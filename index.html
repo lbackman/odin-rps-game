@@ -44,8 +44,15 @@
             return `You win! ${playerSelection} beats ${computerSelection}.`
         }
     }
-
-    const playerSelection ="Paper";
+    // Declare function that makes sure the playerSelection is always capitalized
+    function capitalize (selection) {
+        const str1 = selection.toLowerCase();        // First, make the selection all lower case
+        const str2 = str1.charAt(0).toUpperCase();   // Make first letter capital
+        const str3 = str1.slice(1);                  // Slice off after first letter
+        const str4 =`${str2}${str3}`;               // Join the two parts together
+        return str4;
+    }
+    const playerSelection = capitalize("paPer");
     const computerSelection = computerPlay()
     console.log(playerSelection);
     console.log(computerSelection);
