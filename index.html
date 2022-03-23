@@ -16,23 +16,40 @@
         // Declare variable that will hold computer's "choice"
         // Let the value will be a number between 1 and 3 inclusive
         const compChoice = Math.floor(Math.random()*3) + 1;
-        
-        // Use if statement to map 1 to rock, 2 to paper, and 3 to scissors
+
+        // Use if else statement to map 1 to rock, 2 to paper, and 3 to scissors
         // Store the new string value in variable computerSelection
         if (compChoice === 1) {
-            const computerSelection = "Rock";
-            return computerSelection;
+            return "Rock";
         } else if (compChoice === 2) {
-            const computerSelection = "Paper";
-            return computerSelection;
+            return "Paper";
         } else {
-            const computerSelection = "Scissors";
-            return computerSelection;
+            return "Scissors";
         }
         
     }
-    let comp = computerPlay();
-    console.log(comp);
+    //console.log(computerPlay());
+
+    // Declare function that plays one round of the game
+    function playRound(playerSelection, computerSelection) {
+
+        // Make if else statement the iterates over the different outcomes
+        if (playerSelection === computerSelection) {
+            return `You both picked ${playerSelection}. That's a draw`;
+        } else if ((playerSelection === "Rock" && computerSelection === "Paper") || 
+                   (playerSelection === "Paper" && computerSelection === "Scissors") || 
+                   (playerSelection === "Scissors" && computerSelection === "Rock")) {
+            return `You lose! ${computerSelection} beats ${playerSelection}.`;
+        } else {
+            return `You win! ${playerSelection} beats ${computerSelection}.`
+        }
+    }
+
+    const playerSelection ="Paper";
+    const computerSelection = computerPlay()
+    console.log(playerSelection);
+    console.log(computerSelection);
+    console.log(playRound(playerSelection, computerSelection));
 </script>
 
 </body>
