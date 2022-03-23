@@ -26,7 +26,6 @@
         } else {
             return "Scissors";
         }
-        
     }
     //console.log(computerPlay());
 
@@ -49,14 +48,50 @@
         const str1 = selection.toLowerCase();        // First, make the selection all lower case
         const str2 = str1.charAt(0).toUpperCase();   // Make first letter capital
         const str3 = str1.slice(1);                  // Slice off after first letter
-        const str4 =`${str2}${str3}`;               // Join the two parts together
-        return str4;
+        return `${str2}${str3}`;                    // Join the two parts together
     }
+    /*
     const playerSelection = capitalize("paPer");
     const computerSelection = computerPlay()
     console.log(playerSelection);
     console.log(computerSelection);
-    console.log(playRound(playerSelection, computerSelection));
+    console.log(playRound(playerSelection, computerSelection)); */
+
+    // Declare function game(), which keeps track of overall points
+    function game() {
+        // Declare initial scores for both players
+        let playerScore = 0;
+        let computerScore = 0;
+        // Use for loop to play best out of 5
+        for (i = 0; i < 5; i++) {
+            // Declare variables for selections and result inside the for loop
+            const playerSelection = capitalize(prompt("Rock, paper or scissors?"));
+            const computerSelection = computerPlay();
+            const result = playRound(playerSelection, computerSelection);
+            // Use if loop to tally the correct score
+            console.log(result);
+            if (result === `You both picked ${playerSelection}. That's a draw`) {
+                playerScore += 0;
+                computerScore += 0;
+            } else if ( result === `You lose! ${computerSelection} beats ${playerSelection}.`) {
+                playerScore += 0;
+                computerScore += 1;
+            } else {
+                playerScore += 1;
+                computerScore += 0;
+            }
+            console.log(`The current score is ${playerScore} - ${computerScore}.`)
+
+        }
+        if (playerScore > computerScore) {
+            console.log("Congratulations! You won!")
+        } else if (playerScore < computerScore) {
+            console.log("You lost. Better luck next time.")
+        } else {
+            console.log("It's a tie!")
+        }
+    }
+    game();
 </script>
 
 </body>
