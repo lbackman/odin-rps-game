@@ -8,8 +8,32 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <script>
+
+<script>
+    // Declare function computerPlay()
+    function computerPlay() {
+
+        // Declare variable that will hold computer's "choice"
+        // Let the value will be a number between 1 and 3 inclusive
+        const compChoice = Math.floor(Math.random()*3) + 1;
         
-    </script>
+        // Use if statement to map 1 to rock, 2 to paper, and 3 to scissors
+        // Store the new string value in variable computerSelection
+        if (compChoice === 1) {
+            const computerSelection = "Rock";
+            return computerSelection;
+        } else if (compChoice === 2) {
+            const computerSelection = "Paper";
+            return computerSelection;
+        } else {
+            const computerSelection = "Scissors";
+            return computerSelection;
+        }
+        
+    }
+    let comp = computerPlay();
+    console.log(comp);
+</script>
+
 </body>
 </html>
