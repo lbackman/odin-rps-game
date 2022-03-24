@@ -37,13 +37,24 @@
         // If player presses cancel, return null
         if (play === null) {
             return null;
-        // If the player chooses anything other than whatt is asked for: prompt again
-        } else if (capitalize(play) !== "Rock" && capitalize(play) !== "Paper" && capitalize(play) !== "Scissors") {
+        } else if (play.toLowerCase() === "rock" || play.toLowerCase() === "r") {
+            return "Rock";
+        } else if (play.toLowerCase() === "paper" || play.toLowerCase() === "p") {
+            return "Paper";
+        } else if (play.toLowerCase() === "scissors" || play.toLowerCase() === "s") {
+            return "Scissors";
+        } else {
+            // If the player chooses anything other than what is asked for: prompt again
+            console.log("That is not a valid choice, please try again");
+            console.log(play);
+            playerPlay();
+        }
+        /*else if (capitalize(play) !== "Rock" && capitalize(play) !== "Paper" && capitalize(play) !== "Scissors") {
             console.log("That is not a valid choice, please try again");
             playerPlay();
         } else {
             return capitalize(play);
-        }
+        } */
     }
     // Declare function that plays one round of the game
     function playRound(playerSelection, computerSelection) {
@@ -64,12 +75,12 @@
     // Declare function that makes sure the playerSelection is always capitalized
     /* I realize I could make all letters lower case and it would work just as fine and be easier, 
         but I had written this piece of code in a previous exercise.*/
-    function capitalize (selection) {
+    /*function capitalize (selection) {
         const str1 = selection.toLowerCase();        // First, make the selection all lower case
         const str2 = str1.charAt(0).toUpperCase();   // Make first letter capital
         const str3 = str1.slice(1);                  // Slice off after first letter
         return `${str2}${str3}`;                    // Join the two parts together
-    }
+    }*/
 
     // Declare function game(), which keeps track of overall points
     function game() {
@@ -96,6 +107,7 @@
                 break;  // Breaks out of the for loop
             } else {
                 console.log(`You win the round! ${playerSelection} beats ${computerSelection.toLowerCase()}.`);
+                console.log(playerSelection);
                 playerScore += 1;
             }
             console.log(`The score after round ${i+1} is ${playerScore} - ${computerScore}.`)
