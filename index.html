@@ -96,10 +96,9 @@
                 playerScore = -1;
                 computerScore = -1;
                 break;  // Breaks out of the for loop
-		// If the player enters "illegal value" decrement i and play round again
+		// If the player enters "illegal value" decrement i so it doesn't count as a round
             } else if (result === "not defined") {
 	 	i--;
-		playRound();
             } else {
                 console.log(`You win the round! ${playerSelection} beats ${computerSelection.toLowerCase()}.`);
                 playerScore += 1;
@@ -109,7 +108,6 @@
 		console.log(`The score after round ${i+1} is ${playerScore} - ${computerScore}.`);
 	   }
 	    
-
         }
 	// Declare the winner of the game
         if (playerScore > computerScore) {
