@@ -37,10 +37,10 @@
         // If player presses cancel, return null
         if (play === null) {
             return null;
-        // If the player chooses anything other than whatt is asked for: prompt again
+        // If the player chooses anything other than what is asked for:
         } else if (capitalize(play) !== "Rock" && capitalize(play) !== "Paper" && capitalize(play) !== "Scissors") {
-            console.log("That is not a valid choice, please try again");
-            playerPlay();
+            console.log("That is not a valid choice, please try again.");
+            return "not defined";
         } else {
             return capitalize(play);
         }
@@ -57,9 +57,11 @@
             return "lose";
         } else if (playerSelection === null) {
             return null;
+        } else if (playerSelection === "not defined") {
+            return "not defined";
         } else {
-            return "win";
-        }
+	    return "win";
+	}
     }
     // Declare function that makes sure the playerSelection is always capitalized
     /* I realize I could make all letters lower case and it would work just as fine and be easier, 
@@ -83,7 +85,7 @@
             const computerSelection = computerPlay();
             const result = playRound(playerSelection, computerSelection);
             // Use if loop to tally the correct score
-            /* console.log(result); */
+            //console.log(result);
             if (result === "draw") {
                 console.log(`You both picked ${playerSelection.toLowerCase()}. That's a draw.`);
             } else if ( result === "lose") {
@@ -94,13 +96,22 @@
                 playerScore = -1;
                 computerScore = -1;
                 break;  // Breaks out of the for loop
+		// If the player enters "illegal value" decrement i and play round again
+            } else if (result === "not defined") {
+	 	i--;
+		playRound();
             } else {
                 console.log(`You win the round! ${playerSelection} beats ${computerSelection.toLowerCase()}.`);
                 playerScore += 1;
-            }
-            console.log(`The score after round ${i+1} is ${playerScore} - ${computerScore}.`)
+	    }
+           // only print result if the player enters approved value  
+	   if (result !== "not defined") {
+		console.log(`The score after round ${i+1} is ${playerScore} - ${computerScore}.`);
+	   }
+	    
 
         }
+	// Declare the winner of the game
         if (playerScore > computerScore) {
             console.log("Congratulations! You won the game!")
         } else if (playerScore < computerScore) {
