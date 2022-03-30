@@ -117,7 +117,7 @@
                 break;
 		// If the player enters "illegal value" decrement i so it doesn't count as a round
             } else if (result === "not defined") {
-	 	        i--;
+	 	        continue;
             } else {
                 console.log(`You win the round! ${playerSelection} beats ${computerSelection.toLowerCase()}.`);
                 playerScore += 1;
