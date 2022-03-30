@@ -94,8 +94,9 @@
         // Declare initial scores for both players
         let playerScore = 0;
         let computerScore = 0;
+        let i = 0;
         // Use for loop to play best out of 5
-        for (i = 0; i < 5; i++) {
+        while (playerScore < 5 && computerScore < 5) {
             // Declare variables for selections and result inside the for loop
             const playerSelection = playerPlay();
             const computerSelection = computerPlay();
@@ -104,24 +105,27 @@
             //console.log(result);
             if (result === "draw") {
                 console.log(`You both picked ${playerSelection.toLowerCase()}. That's a draw.`);
+                i++;
             } else if ( result === "lose") {
                 console.log(`You lose the round! ${computerSelection} beats ${playerSelection.toLowerCase()}.`);
                 computerScore += 1;
+                i++;
             } else if (result === null) {
                 // Assign an "impossible" score in order to make it easier to cancel in the else if statement below
                 playerScore = -1;
                 computerScore = -1;
-                break;  // Breaks out of the for loop
+                break;
 		// If the player enters "illegal value" decrement i so it doesn't count as a round
             } else if (result === "not defined") {
 	 	        i--;
             } else {
                 console.log(`You win the round! ${playerSelection} beats ${computerSelection.toLowerCase()}.`);
                 playerScore += 1;
+                i++;
 	    }
            // only print result if the player enters approved value  
 	   if (result !== "not defined") {
-		console.log(`The score after round ${i+1} is ${playerScore} - ${computerScore}.`);
+		console.log(`The score after round ${i} is ${playerScore} - ${computerScore}.`);
 	   }
 	    
         }
