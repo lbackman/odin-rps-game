@@ -15,13 +15,13 @@
 <div class="container">
     <div class="button-container">
         <div class="rock">
-            <button id="rock">Rock</button>
+            <button id="Rock" class="rps">Rock</button>
         </div>
         <div class="paper">
-            <button id="paper">Paper</button>
+            <button id="Paper" class="rps">Paper</button>
         </div>
         <div class="scissors">
-            <button id="scissors">Scissors</button>
+            <button id="Scissors" class="rps">Scissors</button>
         </div>
     </div>
     <div class="result-container">
@@ -32,15 +32,33 @@
 <!-- New html above this line -->
 
 <script>
-    // Declare function computerPlay()
-    function computerPlay() {
+    const buttons = document.querySelectorAll('button.rps');
+    buttons.forEach((button) => {
+        button.addEventListener('click', function() {
+            const choice = button.textContent;
+            playRound(choice);
+        }); 
+    });
+    
+    function playRound(arg) {
+        const comp = computerPlay();
+        if (arg == comp) {
+            console.log('draw');
+            return 'draw';
+        } else if ((arg == "Rock" && comp == "Paper") || 
+                (arg == "Paper" && comp == "Scissors") || 
+                (arg == "Scissors" && comp == "Rock")) {
+            console.log('lose');
+            return 'lose';
+        } else {
+            console.log('win');
+            return 'win';
+	    }
+    }
 
-        // Declare variable that will hold computer's "choice"
-        // Let the value will be a number between 1 and 3 inclusive
+    function computerPlay() {
         const compChoice = Math.floor(Math.random()*3) + 1;
 
-        // Use if else statement to map 1 to rock, 2 to paper, and 3 to scissors
-        // Store the new string value in variable computerSelection
         if (compChoice === 1) {
             return "Rock";
         } else if (compChoice === 2) {
@@ -49,48 +67,9 @@
             return "Scissors";
         }
     }
-    // Declare function playerPlay()
-    function playerPlay() {
-        // Ask the player what they want to pick
-        const play = prompt("Rock, paper or scissors?");
-        // If player presses cancel, return null
-        if (play === null) {
-            return null;
-        } else if (play.toLowerCase() === "rock" || play.toLowerCase() === "r") {
-            return "Rock";
-        } else if (play.toLowerCase() === "paper" || play.toLowerCase() === "p") {
-            return "Paper";
-        } else if (play.toLowerCase() === "scissors" || play.toLowerCase() === "s") {
-            return "Scissors";
-        } else {
-            // If the player chooses anything other than what is asked for: prompt again
-            console.log("That is not a valid choice, please try again");
-            return "not defined";
-        }
 
-    }
-    // Declare function that plays one round of the game
-    function playRound(playerSelection, computerSelection) {
-
-        // Make if else statement the iterates over the different outcomes
-        if (playerSelection === computerSelection) {
-            return "draw";
-        } else if ((playerSelection === "Rock" && computerSelection === "Paper") || 
-                   (playerSelection === "Paper" && computerSelection === "Scissors") || 
-                   (playerSelection === "Scissors" && computerSelection === "Rock")) {
-            return "lose";
-        } else if (playerSelection === null) {
-            return null;
-        } else if (playerSelection === "not defined") {
-            return "not defined";
-        } else {
-	    return "win";
-	    }
-    }
-
-
-    // Declare function game(), which keeps track of overall points
-    function game() {
+    // Keeping function game() commented out if needed for reference.
+    /*function game() {
         // Declare initial scores for both players
         let playerScore = 0;
         let computerScore = 0;
@@ -139,7 +118,7 @@
         } else {
             console.log("It's a tie!")
         }
-    }
+    }*/
 </script>
 
 </body>
