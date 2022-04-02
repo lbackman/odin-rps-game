@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <style src="script.js"></style>
     <title>Rock Paper Scissors</title>
 </head>
@@ -26,7 +27,7 @@
     </div>
     <div class="result-container">
         <p id="round"></p>
-        <p id="result">
+        <p id="result" class="disabled">
             The score after round <span id="current">0</span> is 
             <span id="player">0</span> - <span id="computer">0</span>.
         </p>
@@ -41,6 +42,7 @@
     let playerScore = 0;
     let computerScore = 0;
     let i = 0;
+    let para = document.querySelector('#result');
     let round = document.querySelector('#round');
     let current = document.querySelector('#current');
     let p1s = document.querySelector('#player'); //player score in dom
@@ -54,6 +56,7 @@
             const choice = button.textContent;
             const computer = computerPlay();
             let result = playRound(choice, computer);
+            para.classList.remove('disabled');
             
             if (result === 'draw') {
                 round.textContent = `You both picked ${choice}; that's a draw.`
