@@ -77,6 +77,7 @@
                     final.textContent = "You lost. Better luck next time!"
                     buttons.forEach( button => button.disabled = true );
                     restart.classList.remove('disabled');
+                    restart.addEventListener('click', playAgain);
                 }
 
             } else {
@@ -89,15 +90,25 @@
                     final.textContent = "You won! Congratulations!";
                     buttons.forEach( button => button.disabled = true );
                     restart.classList.remove('disabled');
+                    restart.addEventListener('click', playAgain);
                 }
             }
+            
         }); 
     });
-    
-    restart.addEventListener('click', function() {
-        window.location.reload();
-        return false;
-    });
+    function playAgain() {
+        restart.classList.add('disabled');
+        para.classList.add('disabled');
+        buttons.forEach( button => button.disabled = false );
+        playerScore = 0;
+        computerScore = 0;
+        i = 0;
+        p1s.textContent = playerScore;
+        p2s.textContent = computerScore;
+        round.textContent = '';
+        current.textContent = i;
+        final.textContent = '';
+    }
 
     function computerPlay() {
         const compChoice = Math.floor(Math.random()*3) + 1;
