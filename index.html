@@ -49,11 +49,12 @@
     let playerScore = 0;
     let computerScore = 0;
     let i = 0;
+    
     let para = document.querySelector('#result');
     let round = document.querySelector('#round');
     let current = document.querySelector('#current');
-    let p1s = document.querySelector('#player'); //player score in dom
-    let p2s = document.querySelector('#computer');
+    let p1s = document.querySelector('#player'); // p1s = player score
+    let p2s = document.querySelector('#computer'); // p2s = computer score
     let final = document.querySelector('#final-result');
     let restart = document.querySelector('#restart-button');
 
@@ -72,7 +73,8 @@
                 current.textContent = i;
 
             } else if(result === 'lose') {
-                round.textContent = `You lose this round. ${computer} beats ${choice.toLowerCase()}.`
+                round.textContent = `You lose this round. ${computer} 
+                  beats ${choice.toLowerCase()}.`
                 i++;
                 computerScore++;
                 current.textContent = i;
@@ -85,7 +87,8 @@
                 }
 
             } else {
-                round.textContent = `You win the round! ${choice} beats ${computer.toLowerCase()}.`
+                round.textContent = `You win the round! ${choice} beats 
+                  ${computer.toLowerCase()}.`
                 i++;
                 playerScore++;
                 current.textContent = i;
@@ -100,6 +103,7 @@
             
         }); 
     });
+
     function playAgain() {
         restart.classList.add('disabled');
         para.classList.add('disabled');
