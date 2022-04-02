@@ -12,7 +12,7 @@
 
 <h1>Rock Paper Scissors</h1>
 <!-- New html below this line -->
-
+<p class="instructions">Pick rock, paper or scissors. First to win five rounds wins the game.</p>
 <div class="container">
     <div class="button-container">
         <div class="rock">
@@ -33,6 +33,9 @@
         </p>
         <p id="final-result"></p>
     </div>
+    <div id="restart">
+        <button id="restart-button" class="disabled">Play again</button>
+    </div>
 </div>
 
 <!-- New html above this line -->
@@ -48,6 +51,7 @@
     let p1s = document.querySelector('#player'); //player score in dom
     let p2s = document.querySelector('#computer');
     let final = document.querySelector('#final-result');
+    let restart = document.querySelector('#restart-button');
 
     const buttons = document.querySelectorAll('button.rps');
     buttons.forEach((button) => {
@@ -72,6 +76,7 @@
                 if (computerScore >= 5 && playerScore < 5) {
                     final.textContent = "You lost. Better luck next time!"
                     buttons.forEach( button => button.disabled = true );
+                    restart.classList.remove('disabled');
                 }
 
             } else {
@@ -83,11 +88,17 @@
                 if (playerScore >= 5 && computerScore <5) {
                     final.textContent = "You won! Congratulations!";
                     buttons.forEach( button => button.disabled = true );
+                    restart.classList.remove('disabled');
                 }
             }
         }); 
     });
     
+    restart.addEventListener('click', function() {
+        window.location.reload();
+        return false;
+    });
+
     function computerPlay() {
         const compChoice = Math.floor(Math.random()*3) + 1;
 
