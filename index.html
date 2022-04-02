@@ -68,7 +68,8 @@
             para.classList.remove('disabled');
             
             if (result === 'draw') {
-                round.textContent = `You both picked ${choice}; that's a draw.`
+                round.textContent = `You both picked ${choice.toLowerCase()}; 
+                  that's a draw.`
                 i++;
                 current.textContent = i;
 
