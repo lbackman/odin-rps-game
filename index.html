@@ -25,21 +25,61 @@
         </div>
     </div>
     <div class="result-container">
-
+        <p id="result">
+            The score after round <span id="current">0</span> is 
+            <span id="player">0</span> - <span id="computer">0</span>.
+        </p>
     </div>
 </div>
 
 <!-- New html above this line -->
 
 <script>
+    let playerScore = 0;
+    let computerScore = 0;
+    let i = 0;
+    let round = document.querySelector('#current');
+    let p1s = document.querySelector('#player'); //player score in dom
+    let p2s = document.querySelector('#computer');
+
     const buttons = document.querySelectorAll('button.rps');
     buttons.forEach((button) => {
         button.addEventListener('click', function() {
+            
             const choice = button.textContent;
-            playRound(choice);
+            let result = playRound(choice);
+            
+            if (result === 'draw') {
+                i++;
+                round.textContent = i;
+
+            } else if(result === 'lose') {
+                i++;
+                computerScore++;
+                round.textContent = i;
+                p2s.textContent = computerScore;
+
+            } else {
+                i++;
+                playerScore++;
+                round.textContent = i;
+                p1s.textContent = playerScore;
+            }
         }); 
     });
     
+    function computerPlay() {
+        const compChoice = Math.floor(Math.random()*3) + 1;
+
+        if (compChoice === 1) {
+            return "Rock";
+        } else if (compChoice === 2) {
+            return "Paper";
+        } else {
+            return "Scissors";
+        }
+    }
+
     function playRound(arg) {
         const comp = computerPlay();
         if (arg == comp) {
@@ -56,17 +96,7 @@
 	    }
     }
 
-    function computerPlay() {
-        const compChoice = Math.floor(Math.random()*3) + 1;
 
-        if (compChoice === 1) {
-            return "Rock";
-        } else if (compChoice === 2) {
-            return "Paper";
-        } else {
-            return "Scissors";
-        }
-    }
 
     // Keeping function game() commented out if needed for reference.
     /*function game() {
@@ -77,6 +107,8 @@
         // Use for loop to play best out of 5
         while (playerScore < 5 && computerScore < 5) {
             // Declare variables for selections and result inside the for loop
+
+            
             const playerSelection = playerPlay();
             const computerSelection = computerPlay();
             const result = playRound(playerSelection, computerSelection);
