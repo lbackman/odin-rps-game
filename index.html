@@ -29,6 +29,7 @@
             The score after round <span id="current">0</span> is 
             <span id="player">0</span> - <span id="computer">0</span>.
         </p>
+        <p id="final-result"></p>
     </div>
 </div>
 
@@ -41,6 +42,7 @@
     let round = document.querySelector('#current');
     let p1s = document.querySelector('#player'); //player score in dom
     let p2s = document.querySelector('#computer');
+    let final = document.querySelector('#final-result');
 
     const buttons = document.querySelectorAll('button.rps');
     buttons.forEach((button) => {
@@ -58,12 +60,20 @@
                 computerScore++;
                 round.textContent = i;
                 p2s.textContent = computerScore;
+                if (computerScore >= 5 && playerScore < 5) {
+                    final.textContent = "You lost. Better luck next time!"
+                    buttons.forEach( button => button.disabled = true);
+                }
 
             } else {
                 i++;
                 playerScore++;
                 round.textContent = i;
                 p1s.textContent = playerScore;
+                if (playerScore >= 5 && computerScore <5) {
+                    final.textContent = "You won! Congratulations!";
+                    buttons.forEach( button => button.disabled = true);
+                }
             }
         }); 
     });
