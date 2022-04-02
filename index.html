@@ -25,6 +25,7 @@
         </div>
     </div>
     <div class="result-container">
+        <p id="round"></p>
         <p id="result">
             The score after round <span id="current">0</span> is 
             <span id="player">0</span> - <span id="computer">0</span>.
@@ -36,10 +37,12 @@
 <!-- New html above this line -->
 
 <script>
+
     let playerScore = 0;
     let computerScore = 0;
     let i = 0;
-    let round = document.querySelector('#current');
+    let round = document.querySelector('#round');
+    let current = document.querySelector('#current');
     let p1s = document.querySelector('#player'); //player score in dom
     let p2s = document.querySelector('#computer');
     let final = document.querySelector('#final-result');
@@ -49,30 +52,34 @@
         button.addEventListener('click', function() {
             
             const choice = button.textContent;
-            let result = playRound(choice);
+            const computer = computerPlay();
+            let result = playRound(choice, computer);
             
             if (result === 'draw') {
+                round.textContent = `You both picked ${choice}; that's a draw.`
                 i++;
-                round.textContent = i;
+                current.textContent = i;
 
             } else if(result === 'lose') {
+                round.textContent = `You lose this round. ${computer} beats ${choice.toLowerCase()}.`
                 i++;
                 computerScore++;
-                round.textContent = i;
+                current.textContent = i;
                 p2s.textContent = computerScore;
                 if (computerScore >= 5 && playerScore < 5) {
                     final.textContent = "You lost. Better luck next time!"
-                    buttons.forEach( button => button.disabled = true);
+                    buttons.forEach( button => button.disabled = true );
                 }
 
             } else {
+                round.textContent = `You win the round! ${choice} beats ${computer.toLowerCase()}.`
                 i++;
                 playerScore++;
-                round.textContent = i;
+                current.textContent = i;
                 p1s.textContent = playerScore;
                 if (playerScore >= 5 && computerScore <5) {
                     final.textContent = "You won! Congratulations!";
-                    buttons.forEach( button => button.disabled = true);
+                    buttons.forEach( button => button.disabled = true );
                 }
             }
         }); 
@@ -90,8 +97,7 @@
         }
     }
 
-    function playRound(arg) {
-        const comp = computerPlay();
+    function playRound(arg, comp) {
         if (arg == comp) {
             console.log('draw');
             return 'draw';
@@ -105,62 +111,7 @@
             return 'win';
 	    }
     }
-
-
-
-    // Keeping function game() commented out if needed for reference.
-    /*function game() {
-        // Declare initial scores for both players
-        let playerScore = 0;
-        let computerScore = 0;
-        let i = 0;
-        // Use for loop to play best out of 5
-        while (playerScore < 5 && computerScore < 5) {
-            // Declare variables for selections and result inside the for loop
-
-            
-            const playerSelection = playerPlay();
-            const computerSelection = computerPlay();
-            const result = playRound(playerSelection, computerSelection);
-            // Use if loop to tally the correct score
-            //console.log(result);
-            if (result === "draw") {
-                console.log(`You both picked ${playerSelection.toLowerCase()}. That's a draw.`);
-                i++;
-            } else if ( result === "lose") {
-                console.log(`You lose the round! ${computerSelection} beats ${playerSelection.toLowerCase()}.`);
-                computerScore += 1;
-                i++;
-            } else if (result === null) {
-                // Assign an "impossible" score in order to make it easier to cancel in the else if statement below
-                playerScore = -1;
-                computerScore = -1;
-                break;
-		// If the player enters "illegal value" decrement i so it doesn't count as a round
-            } else if (result === "not defined") {
-	 	        continue;
-            } else {
-                console.log(`You win the round! ${playerSelection} beats ${computerSelection.toLowerCase()}.`);
-                playerScore += 1;
-                i++;
-	    }
-           // only print result if the player enters approved value  
-	   if (result !== "not defined") {
-		console.log(`The score after round ${i} is ${playerScore} - ${computerScore}.`);
-	   }
-	    
-        }
-	// Declare the winner of the game
-        if (playerScore > computerScore) {
-            console.log("Congratulations! You won the game!")
-        } else if (playerScore < computerScore) {
-            console.log("You lost the game. Better luck next time!")
-        } else if (playerScore === -1 && computerScore === -1) {
-            console.log('You canceled the game. Type "game()" to start a new game.');
-        } else {
-            console.log("It's a tie!")
-        }
-    }*/
+ 
 </script>
 
 </body>
