@@ -32,8 +32,8 @@
         <p id="round"></p>
         <p id="result" class="disabled">
             The score after <em>round <span id="current">0</span></em> is 
-            <strong><span id="player">0</span></strong> - 
-            <strong><span id="computer">0</span></strong>.
+            <strong><span id="player">0</span> - 
+            <span id="computer">0</span></strong>.
         </p>
         <p id="final-result"></p>
     </div>
@@ -69,19 +69,19 @@
             
             if (result === 'draw') {
                 round.textContent = `You both picked ${choice.toLowerCase()}; 
-                  that's a draw.`
+                  that's a draw.`;
                 i++;
                 current.textContent = i;
 
             } else if(result === 'lose') {
                 round.textContent = `You lose this round. ${computer} 
-                  beats ${choice.toLowerCase()}.`
+                  beats ${choice.toLowerCase()}.`;
                 i++;
                 computerScore++;
                 current.textContent = i;
                 p2s.textContent = computerScore;
                 if (computerScore >= 5 && playerScore < 5) {
-                    final.textContent = "You lost. Better luck next time!"
+                    final.textContent = "You lost. Better luck next time!";
                     buttons.forEach( button => button.disabled = true );
                     restart.classList.remove('disabled');
                     restart.addEventListener('click', playAgain);
@@ -89,7 +89,7 @@
 
             } else {
                 round.textContent = `You win the round! ${choice} beats 
-                  ${computer.toLowerCase()}.`
+                  ${computer.toLowerCase()}.`;
                 i++;
                 playerScore++;
                 current.textContent = i;
@@ -120,6 +120,7 @@
     }
 
     function computerPlay() {
+        
         const compChoice = Math.floor(Math.random()*3) + 1;
 
         if (compChoice === 1) {
@@ -132,16 +133,16 @@
     }
 
     function playRound(arg, comp) {
+
         if (arg == comp) {
-            console.log('draw');
             return 'draw';
+
         } else if ((arg == "Rock" && comp == "Paper") || 
-                (arg == "Paper" && comp == "Scissors") || 
-                (arg == "Scissors" && comp == "Rock")) {
-            console.log('lose');
+              (arg == "Paper" && comp == "Scissors") || 
+              (arg == "Scissors" && comp == "Rock")) {
             return 'lose';
+
         } else {
-            console.log('win');
             return 'win';
 	    }
     }
