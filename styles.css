@@ -1,8 +1,33 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(239, 231, 238);
 }
 
+body {
+    max-width: 600px;
+    margin: 20px 50px;
+}
 
 .disabled {
     visibility: hidden;
+}
+
+button {
+    width: 80px;
+    background-color: aliceblue;
+    margin: 0 8px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+body,
+.container,
+.result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
